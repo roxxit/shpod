@@ -21,6 +21,8 @@ RUN curl -L -o /usr/local/bin/docker-compose https://github.com/docker/compose/r
  && chmod +x /usr/local/bin/docker-compose
 RUN curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
  && chmod +x /usr/local/bin/kubectl
+RUN curl -L -o /usr/local/bin/kubectl-1.8.11 https://storage.googleapis.com/kubernetes-release/release/v1.8.11/bin/linux/amd64/kubectl \
+ && chmod +x /usr/local/bin/kubectl-1.8.11
 RUN kubectl completion bash > $COMPLETIONS/kubectl.bash
 RUN curl -L -o /usr/local/bin/stern https://github.com/wercker/stern/releases/download/${STERN_VERSION}/stern_linux_amd64 \
  && chmod +x /usr/local/bin/stern
