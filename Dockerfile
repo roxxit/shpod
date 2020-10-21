@@ -54,6 +54,9 @@ COPY --from=jid /go/bin/jid /usr/local/bin/jid
 WORKDIR /root
 RUN echo trap exit TERM > /etc/profile.d/trapterm.sh
 RUN sed -i "s/export PS1=/#export PS1=/" /etc/profile
+RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64 \
+ && chmod +x ./kind \
+ && mv ./kind /usr/local/bin/kind
 ENV \
  HOSTIP="0.0.0.0" \
  KUBE_PS1_PREFIX="" \
