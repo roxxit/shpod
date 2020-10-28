@@ -10,7 +10,7 @@ ENV \
  STERN_VERSION=1.11.0
 ## Alpine base ##
 ENV COMPLETIONS=/usr/share/bash-completion/completions
-RUN apk add bash bash-completion curl git jq libintl ncurses openssl tmux vim apache2-utils openssh-client docker file sshpass zsh
+RUN apk add bash bash-completion curl git jq libintl ncurses openssl tmux vim apache2-utils openssh-client docker file sshpass zsh cntlm python3 openjdk11
 RUN sed -i s,/bin/ash,/bin/bash, /etc/passwd
 ## Ubuntu base ##
 #ENV COMPLETIONS=/etc/bash_completion.d
@@ -18,7 +18,7 @@ RUN sed -i s,/bin/ash,/bin/bash, /etc/passwd
 # && apt-get install -y curl git jq vim apache2-utils
 ## Install a bunch of binaries
 RUN curl -L -o /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-Linux-x86_64 \
- && chmod +x /usr/local/bin/docker-compose
+ && chmod +x /usr/local/bin/docker-compose  
 RUN curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
  && chmod +x /usr/local/bin/kubectl
 RUN curl -L -o /usr/local/bin/kubectl-1.8.11 https://storage.googleapis.com/kubernetes-release/release/v1.8.11/bin/linux/amd64/kubectl \
