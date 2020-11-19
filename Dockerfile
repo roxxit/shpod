@@ -1,7 +1,8 @@
 FROM golang:alpine AS jid
 RUN apk add git
 RUN go get -u github.com/simeji/jid/cmd/jid
-FROM alpine
+
+FROM mcr.microsoft.com/vscode/devcontainers/base:alpine
 ENV \
  COMPOSE_VERSION=1.26.2 \
  HELM_VERSION=3.3.0 \
