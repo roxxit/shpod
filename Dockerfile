@@ -2,6 +2,11 @@ FROM golang:alpine AS jid
 RUN apk add git
 RUN go get -u github.com/simeji/jid/cmd/jid
 
+FROM golang:alpine AS gh-cli
+RUN apk add git make gcc musl-dev
+RUN git clone https://github.com/cli/cli.git
+RUN cd cli && make
+
 FROM mcr.microsoft.com/vscode/devcontainers/base:alpine
 ENV \
  COMPOSE_VERSION=1.26.2 \
@@ -52,6 +57,7 @@ RUN cd /tmp \
 RUN kubectl config set-context kubernetes --namespace=default \
  && kubectl config use-context kubernetes
 COPY --from=jid /go/bin/jid /usr/local/bin/jid
+COPY --from=gh-cli /go/cli/bin/gh /usr/local/bin/gh
 WORKDIR /root
 RUN echo trap exit TERM > /etc/profile.d/trapterm.sh
 RUN sed -i "s/export PS1=/#export PS1=/" /etc/profile
