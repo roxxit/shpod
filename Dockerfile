@@ -4,8 +4,8 @@ RUN go get -u github.com/simeji/jid/cmd/jid
 FROM alpine
 ENV \
  COMPOSE_VERSION=1.26.2 \
- HELM_VERSION=3.3.0 \
- KUBECTL_VERSION=1.18.8 \
+ HELM_VERSION=3.5.0 \
+ KUBECTL_VERSION=1.20.2 \
  SHIP_VERSION=0.51.3 \
  STERN_VERSION=1.11.0
 ## Alpine base ##
